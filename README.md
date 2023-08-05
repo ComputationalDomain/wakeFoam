@@ -26,7 +26,8 @@ cd turbinesFoam
 ```
 
 ### Parameters
-1. ''' Dist '''
+1. ```bash
+Dist ```
 
 ### Usage
 There are tutorials located in `turbinesFoam/tutorials`.
