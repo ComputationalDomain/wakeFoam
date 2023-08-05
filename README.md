@@ -20,13 +20,18 @@ An external library for OpenFOAM, containing a custom boundary condition for a v
 ### Installation
 ```bash
 cd $WM_PROJECT_USER_DIR
-git clone https://github.com/turbinesFoam/turbinesFoam.git
-cd turbinesFoam
-./Allwmake
+git clone [https://github.com/turbinesFoam/turbinesFoam.git](https://github.com/ComputationalDomain/wakeFoam.git)
+cd wakeFoam
+wmake
 ```
 
 ### Parameters
-1. ` Dist `
+1. `flowSpeed` Defines the flowspeed outside of the wake (Note: the velocity should be adjusted according to parameter `D` such that the Reynolds number stays equal to 100)
+2. `locationY` Defines the location of the 
+3. `locationStreamwise`
+4. `D`
+5. `streamwise`
+6. `spanwise`
 
 ### Usage
 There are tutorials located in `turbinesFoam/tutorials`.
