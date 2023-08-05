@@ -36,7 +36,7 @@ wmake
 6. `spanwise` spanwise axis (e.g. y).
 
 ### Usage
-There are tutorials located in `turbinesFoam/tutorials`.
+There are tutorials located in `wakeFoam/tutorials`.
 
 ## License
 This repository is licensed under MIT as given in [LICENSE](LICENSE).
