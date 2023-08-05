@@ -20,7 +20,6 @@
 ## Implementation
 
 ### Installation
-
 ```bash
 cd $WM_PROJECT_USER_DIR
 git clone https://github.com/turbinesFoam/turbinesFoam.git
@@ -28,12 +27,8 @@ cd turbinesFoam
 ./Allwmake
 ```
 
-Usage
------
-
+### Usage
 There are tutorials located in `turbinesFoam/tutorials`.
-
-### Installation
 
 ## License
 This repository is licensed under MIT as given in [LICENSE](LICENSE).
