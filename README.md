@@ -5,6 +5,10 @@
 <img src="https://img.shields.io/github/license/prabhuomkar/pytorch-cpp">
 </p>
 
+![OpenFOAM v2106](https://img.shields.io/badge/OpenFOAM-v2106-brightgreen.svg)
+![OpenFOAM 8](https://img.shields.io/badge/OpenFOAM-8-brightgreen.svg)
+![OpenFOAM 7](https://img.shields.io/badge/OpenFOAM-7-brightgreen.svg)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -14,6 +18,21 @@
 ## Introduction
 
 ## Implementation
+
+### Installation
+
+```bash
+cd $WM_PROJECT_USER_DIR
+git clone https://github.com/turbinesFoam/turbinesFoam.git
+cd turbinesFoam
+./Allwmake
+```
+
+Usage
+-----
+
+There are tutorials located in `turbinesFoam/tutorials`.
+
 ### Installation
 
 ## License
