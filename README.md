@@ -25,6 +25,9 @@ cd turbinesFoam
 ./Allwmake
 ```
 
+### Parameters
+1. ''' Dist '''
+
 ### Usage
 There are tutorials located in `turbinesFoam/tutorials`.
 
