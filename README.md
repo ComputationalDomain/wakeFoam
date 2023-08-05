@@ -14,6 +14,7 @@
 ## Introduction
 
 ## Implementation
+### Installation
 
 ## License
 This repository is licensed under MIT as given in [LICENSE](LICENSE).
