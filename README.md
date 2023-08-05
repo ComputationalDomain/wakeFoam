@@ -7,7 +7,13 @@
 
 ## Table of Contents
 
-[Introduction](#introduction)
+1. [Introduction](#introduction)
+2. [Implementaion](#implementation)
+3. [License](#license)
 
 ## Introduction
-## Usage
+
+## Implementation
+
+## License
+This repository is licensed under MIT as given in [LICENSE](LICENSE).
