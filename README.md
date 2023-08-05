@@ -26,12 +26,12 @@ wmake
 ```
 
 ### Parameters
-1. `flowSpeed` Defines the flowspeed outside of the wake (Note: the velocity should be adjusted according to parameter `D` such that the Reynolds number stays equal to 100)
-2. `locationY` Defines the location of the 
-3. `locationStreamwise`
-4. `D`
-5. `streamwise`
-6. `spanwise`
+1. `flowSpeed` Defines the flowspeed outside of the wake (Note: the velocity should be adjusted according to parameter `D` such that the Reynolds number stays equal to 100).
+2. `locationY` Defines the location of the center axis in spanwise direction.
+3. `locationStreamwise` Defines the distance of inlet surface from the cylinder (e.g. 8 diameters behind cylinder).
+4. `D` Diameter of the cylinder.
+5. `streamwise` streamwise axis (e.g. x).
+6. `spanwise` spanwise axis (e.g. y).
 
 ### Usage
 There are tutorials located in `turbinesFoam/tutorials`.
