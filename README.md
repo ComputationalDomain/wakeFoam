@@ -22,7 +22,7 @@ When using the wakeFoam library the ```net.pt``` and ```wake_BC``` files must be
 ### Installation
 ```bash
 cd $WM_PROJECT_USER_DIR
-git clone [https://github.com/turbinesFoam/turbinesFoam.git](https://github.com/ComputationalDomain/wakeFoam.git)
+git clone https://github.com/ComputationalDomain/wakeFoam.git
 cd wakeFoam
 wmake
 ```
