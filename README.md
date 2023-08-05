@@ -17,6 +17,8 @@ An external library for OpenFOAM, containing a custom boundary condition for a v
 
 ## Implementation
 
+When using the wakeFoam library the ```net.pt``` and ```wake_BC``` files must be present in the simulations folder.
+
 ### Installation
 ```bash
 cd $WM_PROJECT_USER_DIR
