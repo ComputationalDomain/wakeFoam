@@ -4,8 +4,7 @@ An external library for OpenFOAM, containing a custom boundary condition for a v
 <img src="https://img.shields.io/github/license/prabhuomkar/pytorch-cpp">
 
 ![OpenFOAM v2106](https://img.shields.io/badge/OpenFOAM-v2106-brightgreen.svg)
-![OpenFOAM 8](https://img.shields.io/badge/OpenFOAM-8-brightgreen.svg)
-![OpenFOAM 7](https://img.shields.io/badge/OpenFOAM-7-brightgreen.svg)
+![OpenFOAM 8](https://img.shields.io/badge/OpenFOAM-6-brightgreen.svg)
 
 ## Table of Contents
 
