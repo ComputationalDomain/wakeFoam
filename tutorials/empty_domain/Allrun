@@ -1,0 +1,2 @@
+cp -rf 0.org 0
+runApplication pimpleFoam
