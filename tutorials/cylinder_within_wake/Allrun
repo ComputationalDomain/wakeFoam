@@ -1,0 +1,2 @@
+cp -rf 40.org 40
+runApplication pimpleFoam
