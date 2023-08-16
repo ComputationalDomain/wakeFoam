@@ -25,7 +25,7 @@ License
 
 //#include <torch/torch.h>
 //#include <torch/script.h>
-#include "myBCFvPatchVectorField.H"
+#include "wakeBC100ReFvPatchVectorField.H"
 
 #include <iostream>
 #include <fstream>
@@ -33,7 +33,7 @@ License
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
-Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
+Foam::wakeBC100ReFvPatchVectorField::wakeBC100ReFvPatchVectorField
 (
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF
@@ -50,7 +50,7 @@ Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
 	//centrepoint_(vector::zero)
 {}
 
-Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
+Foam::wakeBC100ReFvPatchVectorField::wakeBC100ReFvPatchVectorField
 (
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF,
@@ -86,9 +86,9 @@ Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
 	updateCoeffs();
 }
 
-Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
+Foam::wakeBC100ReFvPatchVectorField::wakeBC100ReFvPatchVectorField
 (
-    const myBCFvPatchVectorField& ptf,
+    const wakeBC100ReFvPatchVectorField& ptf,
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF,
     const fvPatchFieldMapper& mapper
@@ -105,9 +105,9 @@ Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
 	spanwise_(ptf.spanwise_)
 {}
 
-Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
+Foam::wakeBC100ReFvPatchVectorField::wakeBC100ReFvPatchVectorField
 (
-    const myBCFvPatchVectorField& rifvpvf
+    const wakeBC100ReFvPatchVectorField& rifvpvf
 )
 :
     fixedValueFvPatchVectorField(rifvpvf),
@@ -119,9 +119,9 @@ Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
 	spanwise_(rifvpvf.spanwise_)
 {}
 
-Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
+Foam::wakeBC100ReFvPatchVectorField::wakeBC100ReFvPatchVectorField
 (
-    const myBCFvPatchVectorField& rifvpvf,
+    const wakeBC100ReFvPatchVectorField& rifvpvf,
     const DimensionedField<vector, volMesh>& iF
 )
 :
@@ -136,7 +136,7 @@ Foam::myBCFvPatchVectorField::myBCFvPatchVectorField
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::myBCFvPatchVectorField::autoMap
+void Foam::wakeBC100ReFvPatchVectorField::autoMap
 (
     const fvPatchFieldMapper& m
 )
@@ -145,7 +145,7 @@ void Foam::myBCFvPatchVectorField::autoMap
 }
 
 
-void Foam::myBCFvPatchVectorField::rmap
+void Foam::wakeBC100ReFvPatchVectorField::rmap
 (
     const fvPatchVectorField& ptf,
     const labelList& addr
@@ -156,7 +156,7 @@ void Foam::myBCFvPatchVectorField::rmap
 
 // NOTE: this is the key method which implements the actual maths for calculating
 // the inlet profiles.
-void Foam::myBCFvPatchVectorField::updateCoeffs()
+void Foam::wakeBC100ReFvPatchVectorField::updateCoeffs()
 {
     if (updated())
     {
@@ -174,10 +174,12 @@ void Foam::myBCFvPatchVectorField::updateCoeffs()
 	
 	float current_time = this->db().time().value();
 	
-	if(current_time > 17.0){
-		int div = current_time/17;
-		current_time = current_time - div*17.0;
+	if(current_time > 5.8){
+		int div = current_time/5.8;
+		current_time = current_time - div*5.8;
 	}
+	
+	current_time += 10.0;
 	
 	
 	MyFile << current_time << std::endl;
@@ -189,38 +191,39 @@ void Foam::myBCFvPatchVectorField::updateCoeffs()
 		//scalar yOverDelta ( (1.-mag(centrepoint_ - patch().Cf()[faceI])/R_)/deltaByR_ );
 		//torch::Tensor a = torch::tensor({1., 1.}, torch::requires_grad());
 		
-		float write_y;
-		
-		if (spanwise_.compare("x")) {
-			write_y = (patch().Cf()[faceI][0] - locationY_)/D_;
+		if (spanwise_.compare("x") == 0) {
+			float write_y = (patch().Cf()[faceI][0] - locationY_)/D_;
 			if(write_y > 5.9){
 				write_y = 5.9;
 			}
 			if(write_y < -6.0){
 				write_y = -6.0;
 			}
+			MyFile << write_y << " " << locationStreamwise_ << std::endl;
 		}
-		else if (spanwise_.compare("y")){
-			write_y = (patch().Cf()[faceI][1] - locationY_)/D_;
+		else if (spanwise_.compare("y") == 0){
+			float write_y = (patch().Cf()[faceI][1] - locationY_)/D_;
 			if(write_y > 5.9){
 				write_y = 5.9;
 			}
 			if(write_y < -6.0){
 				write_y = -6.0;
 			}
+			MyFile << write_y << " " << locationStreamwise_ << std::endl;
 		}
 		else {
-			write_y = (patch().Cf()[faceI][2] - locationY_)/D_;
+			float write_y = (patch().Cf()[faceI][2] - locationY_)/D_;
 			if(write_y > 5.9){
 				write_y = 5.9;
 			}
 			if(write_y < -6.0){
 				write_y = -6.0;
 			}
+			MyFile << write_y << " " << locationStreamwise_ << std::endl;
 		}
 		
 		
-		MyFile << write_y << " " << locationStreamwise_ << std::endl;
+		//MyFile << write_y << " " << locationStreamwise_ << std::endl;
 		
 	}	
 	
@@ -246,20 +249,20 @@ void Foam::myBCFvPatchVectorField::updateCoeffs()
 			float U = std::stof(Ustr);
 			float V = std::stof(Vstr);
 			
-			if (streamwise_.compare("x")) {
+			if (streamwise_.compare("x") == 0) {
 				Uin[j][0] = U*flowSpeed_;
 			}
-			else if (streamwise_.compare("y")) {
+			else if (streamwise_.compare("y") == 0) {
 				Uin[j][1] = U*flowSpeed_;
 			}
 			else {
 				Uin[j][3] = U*flowSpeed_;
 			}
 			
-			if (spanwise_.compare("x")) {
+			if (spanwise_.compare("x") == 0) {
 				Uin[j][0] = V*flowSpeed_;
 			}
-			else if (spanwise_.compare("y")) {
+			else if (spanwise_.compare("y") == 0) {
 				Uin[j][1] = V*flowSpeed_;
 			}
 			else {
@@ -283,15 +286,16 @@ void Foam::myBCFvPatchVectorField::updateCoeffs()
 }
 
 
-void Foam::myBCFvPatchVectorField::write(Ostream& os) const
+void Foam::wakeBC100ReFvPatchVectorField::write(Ostream& os) const
 {
-    fvPatchVectorField::write(os);
-    //os.writeKeyword("approximationType") << approximationType_ << token::END_STATEMENT << nl;
+	
+	fvPatchVectorField::write(os);
     os.writeKeyword("flowSpeed") << flowSpeed_ << token::END_STATEMENT << nl;
-    //os.writeKeyword("deltaByR") << deltaByR_ << token::END_STATEMENT << nl;
     os.writeKeyword("locationY") << locationY_ << token::END_STATEMENT << nl;
+	os.writeKeyword("locationStreamwise") << locationStreamwise_ << token::END_STATEMENT << nl;
     os.writeKeyword("D") << D_ << token::END_STATEMENT << nl;
-    //os.writeKeyword("lambda") << lambda_ << token::END_STATEMENT << nl;
+    os.writeKeyword("streamwise") << streamwise_ << token::END_STATEMENT << nl;
+	os.writeKeyword("spanwise") << spanwise_ << token::END_STATEMENT << nl;
     writeEntry("value", os);
 }
 
@@ -303,7 +307,7 @@ namespace Foam
     makePatchTypeField
     (
         fvPatchVectorField,
-        myBCFvPatchVectorField
+        wakeBC100ReFvPatchVectorField
     );
 }
 
