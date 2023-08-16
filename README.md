@@ -14,6 +14,8 @@ An external library for OpenFOAM, containing a custom boundary condition for a v
 
 ## Introduction
 
+WakeFoam library contains a custom inflow boundary condition, which uses a trained Neural Network to simulate the velocity field of a cylinder wake at the inflow boundary.
+
 ## Implementation
 
 When using the wakeFoam library the ```net.pt``` and ```wake_BC``` files must be present in the simulations folder.
